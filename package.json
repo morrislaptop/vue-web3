@@ -1,0 +1,10 @@
+{
+  "name": "vue-web3",
+  "version": "0.1.0",
+  "description": "Web3 bindings for Vue.js",
+  "main": "index.js",
+  "repository": "https://github.com/morrislaptop/vue-web3.git",
+  "author": "Craig Morris <cr@igmorr.is>",
+  "license": "MIT",
+  "private": false
+}
