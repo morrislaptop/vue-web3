@@ -1,0 +1,347 @@
+{
+  "contractName": "SetsAndEvents",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "noop",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getNow",
+      "outputs": [
+        {
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x606060405260008060006101000a81548160ff021916908315150217905550341561002957600080fd5b60e4806100376000396000f3006060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635dfc2e4a14604e578063bbe4fd50146060575b600080fd5b3415605857600080fd5b605e6086565b005b3415606a57600080fd5b607060b0565b6040518082815260200191505060405180910390f35b6000809054906101000a900460ff16156000806101000a81548160ff021916908315150217905550565b6000429050905600a165627a7a72305820953676700f817f705b8d7a8cbf59baf0f6733ba348701475cd95a47f7ebd74400029",
+  "deployedBytecode": "0x6060604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635dfc2e4a14604e578063bbe4fd50146060575b600080fd5b3415605857600080fd5b605e6086565b005b3415606a57600080fd5b607060b0565b6040518082815260200191505060405180910390f35b6000809054906101000a900460ff16156000806101000a81548160ff021916908315150217905550565b6000429050905600a165627a7a72305820953676700f817f705b8d7a8cbf59baf0f6733ba348701475cd95a47f7ebd74400029",
+  "sourceMap": "25:186:0:-;;;66:5;53:18;;;;;;;;;;;;;;;;;;;;25:186;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:186:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;158:50;;;;;;;;;;;;;;76:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;158:50;198:5;;;;;;;;;;;196:7;188:5;;:15;;;;;;;;;;;;;;;;;;158:50::o;76:78::-;120:9;146:3;139:10;;76:78;:::o",
+  "source": "pragma solidity 0.4.18;\n\ncontract SetsAndEvents {\n\n  bool state = false;\n\n  function getNow () public constant returns (uint time) {\n      return now;\n  }\n\n  function noop () public {\n    state = ! state;\n  }\n\n}\n",
+  "sourcePath": "/Users/craigmorris/Dev/vue-web3/contracts/SetsAndEvents.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/craigmorris/Dev/vue-web3/contracts/SetsAndEvents.sol",
+      "exportedSymbols": {
+        "SetsAndEvents": [
+          22
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".18"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            22
+          ],
+          "name": "SetsAndEvents",
+          "scope": 23
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "state",
+              "scope": 22,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bool",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bool",
+                  "type": "bool"
+                },
+                "id": 2,
+                "name": "ElementaryTypeName",
+                "src": "53:4:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "66616c7365",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "bool",
+                  "type": "bool",
+                  "value": "false"
+                },
+                "id": 3,
+                "name": "Literal",
+                "src": "66:5:0"
+              }
+            ],
+            "id": 4,
+            "name": "VariableDeclaration",
+            "src": "53:18:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getNow",
+              "payable": false,
+              "scope": 22,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 5,
+                "name": "ParameterList",
+                "src": "92:2:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "time",
+                      "scope": 12,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 6,
+                        "name": "ElementaryTypeName",
+                        "src": "120:4:0"
+                      }
+                    ],
+                    "id": 7,
+                    "name": "VariableDeclaration",
+                    "src": "120:9:0"
+                  }
+                ],
+                "id": 8,
+                "name": "ParameterList",
+                "src": "119:11:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 8
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 36,
+                          "type": "uint256",
+                          "value": "now"
+                        },
+                        "id": 9,
+                        "name": "Identifier",
+                        "src": "146:3:0"
+                      }
+                    ],
+                    "id": 10,
+                    "name": "Return",
+                    "src": "139:10:0"
+                  }
+                ],
+                "id": 11,
+                "name": "Block",
+                "src": "131:23:0"
+              }
+            ],
+            "id": 12,
+            "name": "FunctionDefinition",
+            "src": "76:78:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "noop",
+              "payable": false,
+              "scope": 22,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13,
+                "name": "ParameterList",
+                "src": "172:2:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14,
+                "name": "ParameterList",
+                "src": "182:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4,
+                              "type": "bool",
+                              "value": "state"
+                            },
+                            "id": 15,
+                            "name": "Identifier",
+                            "src": "188:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "!",
+                              "prefix": true,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4,
+                                  "type": "bool",
+                                  "value": "state"
+                                },
+                                "id": 16,
+                                "name": "Identifier",
+                                "src": "198:5:0"
+                              }
+                            ],
+                            "id": 17,
+                            "name": "UnaryOperation",
+                            "src": "196:7:0"
+                          }
+                        ],
+                        "id": 18,
+                        "name": "Assignment",
+                        "src": "188:15:0"
+                      }
+                    ],
+                    "id": 19,
+                    "name": "ExpressionStatement",
+                    "src": "188:15:0"
+                  }
+                ],
+                "id": 20,
+                "name": "Block",
+                "src": "182:26:0"
+              }
+            ],
+            "id": 21,
+            "name": "FunctionDefinition",
+            "src": "158:50:0"
+          }
+        ],
+        "id": 22,
+        "name": "ContractDefinition",
+        "src": "25:186:0"
+      }
+    ],
+    "id": 23,
+    "name": "SourceUnit",
+    "src": "0:212:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-03-03T11:18:04.611Z"
+}
