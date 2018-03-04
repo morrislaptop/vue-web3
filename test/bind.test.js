@@ -5,13 +5,16 @@ import Promise from 'bluebird'
 const path = require('path')
 const chai = require('chai')
 const chaiBigNumber = require('chai-bignumber')
-const bigNumber = require('bignumber.js')
 const expect = chai.expect
 const SetsAndEvents = artifacts.require('./SetsAndEvents.sol')
-const provider = ganache.provider()
+
+web3.currentProvider.sendAsync = function () {
+  return web3.currentProvider.send.apply(web3.currentProvider, arguments)
+}
+
 Vue.config.productionTip = false
-Vue.use(VueWeb3, { provider })
-chai.use(chaiBigNumber(bigNumber))
+Vue.use(VueWeb3, { provider: web3.currentProvider })
+chai.use(chaiBigNumber())
 
 contract('Bind', accounts => {
   let vm
@@ -38,8 +41,10 @@ contract('Bind', accounts => {
   
     expect(vm.number).to.be.bignumber.equal(42)
 
-    await setsAndEvents.addOne()
+    let txn = await setsAndEvents.addOne()
 
-    expect(vm.number).to.be.bignumber.equal(43)
+    vm.$on('CALL_MADE', function () {
+      expect(vm.number).to.be.bignumber.equal(43)
+    })
   })
 })
