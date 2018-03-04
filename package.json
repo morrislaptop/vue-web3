@@ -15,6 +15,7 @@
     "chai-bignumber": "^2.0.2",
     "ganache-cli": "^6.1.0-beta.4",
     "jest": "^22.4.2",
+    "semantic-release": "^12.4.1",
     "truffle": "^4.1.0",
     "vue": "^2.5.13",
     "web3": "^1.0.0-beta.30"
