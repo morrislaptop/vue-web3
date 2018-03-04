@@ -21,7 +21,7 @@
     "web3": "^1.0.0-beta.30"
   },
   "scripts": {
-    "test": "jest",
+    "test": "truffle test",
     "compile": "truffle compile",
     "mine": "ganache-cli"
   },

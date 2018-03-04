@@ -24,4 +24,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: npx truffle test
+      - run: yarn test
