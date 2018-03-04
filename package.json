@@ -25,6 +25,7 @@
     "mine": "ganache-cli"
   },
   "dependencies": {
-    "bignumber.js": "https://github.com/frozeman/bignumber.js-nolookahead.git"
+    "bignumber.js": "https://github.com/frozeman/bignumber.js-nolookahead.git",
+    "lodash": "^4.17.5"
   }
 }

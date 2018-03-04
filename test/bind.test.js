@@ -26,13 +26,6 @@ contract('Bind', accounts => {
   let vm, setsAndEvents
 
   before(async () => {
-    vm = new Vue({
-      data: () => ({
-        items: [],
-        number: null
-      })
-    })
-
     _web3.eth.defaultAccount = accounts[0]
     let id = await _web3.eth.net.getId()
     setsAndEvents = new _web3.eth.Contract(SetsAndEvents.abi, SetsAndEvents.networks[id].address, { from: accounts[0] })  
@@ -40,53 +33,57 @@ contract('Bind', accounts => {
     await Vue.nextTick()
   })
 
-  it('manually binds a call', async () => {
-    expect(vm.number).to.equal(null)
-  
-    await vm.$bindCall('number', {
-        method: 'getNumber',
-        contract: setsAndEvents,
+  it('manually binds a call', async () => {  
+    var vm = new Vue({
+      data: {
+        number: null
+      },
+
+      web3: {
+        number: {
+          contract: setsAndEvents,
+          method: 'getNumber'
+        }
+      },
+
+      template: '<div> {{ number }} </div>'
     })
   
+    await new Promise(resolve => vm.$once('CALL_SYNCED', resolve))
     expect(vm.number).to.be.bignumber.equal(42)
 
+    let second = new Promise(resolve => vm.$once('CALL_SYNCED', resolve))
     let txn = await setsAndEvents.methods.addOne().send()
-
-    vm.$on('CALL_MADE', function () {
-      expect(vm.number).to.be.bignumber.equal(43)
-    })
+    await second
+    expect(vm.number).to.be.bignumber.equal(43)
   })
 
-  it.only('manually binds events', async () => {
-    expect(vm.items.length).to.equal(0)
+  it('manually binds events', async () => {
+    var vm = new Vue({
+      data: {
+        items: []
+      },
 
+      web3: {
+        items: {
+          contract: setsAndEvents,
+          event: 'SomethingHappened'
+        }
+      },
+
+      template: '<div><div v-for="item in items">{{ item.returnValues._value }}</div></div>'
+    })
+
+    let first = new Promise(resolve => vm.$once('EVENT_SYNCED', resolve))
     await setsAndEvents.methods.doSomething(1).send()
-
-    let first = new Promise(resolve => {
-      vm.$once('EVENT_SYNCED', function () {
-        expect(vm.items.length).to.equal(1)
-        resolve()
-      })  
-    })
-
-    await vm.$bindEvents('items', {
-      event: 'SomethingHappened',
-      contract: setsAndEvents,
-      options: {
-        fromBlock: 0,
-        toBlock: 'latest'
-      }
-    })
     await first
+    expect(vm.items.length).to.equal(1)
 
-    let second = new Promise(resolve => {
-      vm.$once('EVENT_SYNCED', function (e) {
-        expect(vm.items.length).to.equal(2)
-        resolve()
-      })
-    })
-
+    let second = new Promise(resolve => vm.$once('EVENT_SYNCED', resolve))
     await setsAndEvents.methods.doSomething(2).send()
     await second
+    expect(vm.items.length).to.equal(2)
   })
+
+  
 })
