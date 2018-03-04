@@ -2,12 +2,25 @@ version: 2
 jobs:
   build:
     docker:
-      - image: 'circleci/node:latest'
+      - image: circleci/node:latest
+    
     steps:
       - checkout
-      - run:
-          name: install
-          command: npm install
+      
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: yarn install --ignore-engines
+      
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+        
+      - run: yarn test
+
       - run:
           name: release
           command: npm run semantic-release || true
