@@ -1,6 +1,6 @@
 {
   "name": "vue-web3",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "Web3 bindings for Vue.js",
   "main": "index.js",
   "repository": "https://github.com/morrislaptop/vue-web3.git",
@@ -23,7 +23,8 @@
   "scripts": {
     "test": "truffle test",
     "compile": "truffle compile",
-    "mine": "ganache-cli"
+    "mine": "ganache-cli",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "bignumber.js": "https://github.com/frozeman/bignumber.js-nolookahead.git",
