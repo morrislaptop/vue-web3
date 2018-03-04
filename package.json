@@ -14,7 +14,7 @@
     "bluebird": "^3.5.1",
     "chai": "^4.1.2",
     "chai-bignumber": "^2.0.2",
-    "ganache-cli": "^6.0.3",
+    "ganache-cli": "^6.1.0-beta.4",
     "jest": "^22.4.2",
     "truffle": "^4.1.0",
     "vue": "^2.5.13",

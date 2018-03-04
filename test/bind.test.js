@@ -5,12 +5,13 @@ import Promise from 'bluebird'
 const path = require('path')
 const chai = require('chai')
 const chaiBigNumber = require('chai-bignumber')
+const bigNumber = require('bignumber.js')
 const expect = chai.expect
 const SetsAndEvents = artifacts.require('./SetsAndEvents.sol')
 const provider = ganache.provider()
 Vue.config.productionTip = false
 Vue.use(VueWeb3, { provider })
-chai.use(chaiBigNumber())
+chai.use(chaiBigNumber(bigNumber))
 
 contract('Bind', accounts => {
   let vm
