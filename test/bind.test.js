@@ -3,17 +3,14 @@ import VueWeb3 from '../src'
 import ganache from 'ganache-cli'
 import Promise from 'bluebird'
 const path = require('path')
-
 const chai = require('chai')
-chai.use(require('chai-bignumber')())
+const chaiBigNumber = require('chai-bignumber')
 const expect = chai.expect
-const Deployer = require("truffle-deployer")
-const provider = ganache.provider()
-
 const SetsAndEvents = artifacts.require('./SetsAndEvents.sol')
-
+const provider = ganache.provider()
 Vue.config.productionTip = false
 Vue.use(VueWeb3, { provider })
+chai.use(chaiBigNumber())
 
 contract('Bind', accounts => {
   let vm
@@ -39,5 +36,9 @@ contract('Bind', accounts => {
     })
   
     expect(vm.number).to.be.bignumber.equal(42)
+
+    await setsAndEvents.addOne()
+
+    expect(vm.number).to.be.bignumber.equal(43)
   })
 })
