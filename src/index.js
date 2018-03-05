@@ -47,7 +47,10 @@ module.exports = (Vue, options) => {
 
   Vue.prototype.$bindEvents = async function (key, { event, contract, options }) {
     options = Object.assign({}, { fromBlock: 0, toBlock: 'latest' }, options)
+    
     contract.events[event](options, (err, e) => {
+      if (err) throw err
+
       this[key].push(e)
       this.$emit('EVENT_SYNCED', e)
     })
