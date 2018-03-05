@@ -1,7 +1,7 @@
-import Web3 from 'web3'
-import _ from 'lodash'
+const Web3 = require('web3')
+const _ = require('lodash')
 
-export default (Vue, options) => {
+module.exports = (Vue, options) => {
 
   let web3 = options.web3 || new Web3(options.provider)
   let callsToCheck = []

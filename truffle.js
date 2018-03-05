@@ -1,4 +1,3 @@
-require('babel-register')
 const ganache = require("ganache-cli")
 
 module.exports = {

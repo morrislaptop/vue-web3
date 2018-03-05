@@ -1,20 +1,21 @@
-import Vue from 'vue'
-import VueWeb3 from '../src'
-import ganache from 'ganache-cli'
-import Promise from 'bluebird'
-import Web3 from 'web3'
+const Vue = require('Vue')
+const VueWeb3 = require('../src')
+const ganache = require('ganache-cli')
+const Promise = require('bluebird')
+const Web3 = require('web3')
 const path = require('path')
 const chai = require('chai')
 const chaiBigNumber = require('chai-bignumber')
-const expect = chai.expect
 const SetsAndEvents = artifacts.require('./SetsAndEvents.sol')
+
+const expect = chai.expect
 
 // Fix this.provider.sendAsync is not a function for ganache-cli beta
 web3.currentProvider.sendAsync = web3.currentProvider.sendAsync || function () {
   return web3.currentProvider.send.apply(web3.currentProvider, arguments)
 }
 
-// Use 1.0 of Web3
+// Use 1.x of Web3 instead of 0.x injected by Truffle
 let _web3 = new Web3(web3.currentProvider)
 
 Vue.config.productionTip = false
