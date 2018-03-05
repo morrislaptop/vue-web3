@@ -1,4 +1,4 @@
-# VueWeb3 [![Build Status](https://img.shields.io/circleci/project/morrislaptop/vue-web3.svg)](https://circleci.com/gh/morrislaptop/vue-web3) [![npm package](https://img.shields.io/npm/v/vue-web3.svg)](https://www.npmjs.com/package/vue-web3) [![coverage](https://img.shields.io/codecov/c/github/morrislaptop/vue-web3.svg)](https://codecov.io/github/morrislaptop/vue-web3)
+# VueWeb3 [![Build Status](https://img.shields.io/circleci/project/morrislaptop/vue-web3.svg)](https://circleci.com/gh/morrislaptop/vue-web3) [![npm package](https://img.shields.io/npm/v/vue-web3.svg)](https://www.npmjs.com/package/vue-web3)
 
 > Vue.js bindings for Web3 1.0
 
