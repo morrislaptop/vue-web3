@@ -25,24 +25,26 @@ module.exports = (Vue, options) => {
 
     let callsToMake = callsToCheck.filter(call => addressesToCall.includes(call.contract.options.address))
 
-    callsToMake.forEach(call => bindCall(call.vm, call.key, { method: call.method, contract: call.contract }))
+    callsToMake.forEach(call => bindCall(call.vm, call.key, call))
   }
 
-  async function bindCall(vm, key, { method, contract }) {
-    let value = await contract.methods[method]().call()
+  async function bindCall(vm, key, { method, contract, args }) {
+    let call = contract.methods[method].apply(contract.methods, args)
+    let value = await call.call()
     vm[key] = value
-    vm.$emit('CALL_SYNCED')
+    vm.$emit('CALL_SYNCED', { key, method, args, value })
   }
 
-  Vue.prototype.$bindCall = async function (key, { method, contract }) {
+  Vue.prototype.$bindCall = async function (key, { method, contract, args }) {
     callsToCheck.push({
       vm: this,
       key,
       method,
-      contract
+      contract,
+      args
     })
 
-    await bindCall(this, key, { method, contract })
+    await bindCall(this, key, { method, contract, args })
   }
 
   Vue.prototype.$bindEvents = async function (key, { event, contract, options }) {
