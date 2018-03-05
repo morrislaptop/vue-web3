@@ -22,7 +22,8 @@
   },
   "scripts": {
     "build": "microbundle",
-    "test": "truffle test"
+    "test": "truffle test",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "lodash": "^4.17.5",
