@@ -1,4 +1,4 @@
-const Vue = require('Vue')
+const Vue = require('vue')
 const VueWeb3 = require('../src')
 const ganache = require('ganache-cli')
 const Promise = require('bluebird')
