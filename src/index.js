@@ -6,7 +6,9 @@ module.exports = (Vue, options) => {
   let web3 = options.web3 || new Web3(options.provider)
   let callsToCheck = []
 
-  web3.eth.subscribe('newBlockHeaders').on('data', onNewBlockHeaderData)
+  web3.eth
+    .subscribe('newBlockHeaders', err => err && console.error(err))
+    .on('data', onNewBlockHeaderData)
 
   async function onNewBlockHeaderData(blockHeader) {
     if (! blockHeader.number) return
