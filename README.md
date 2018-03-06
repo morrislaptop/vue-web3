@@ -86,6 +86,18 @@ vm.$bindEvents('transfers', { contract: myContract, event: 'OwnershipTransferred
 vm.$unbind('items')
 ```
 
+## Error: The current provider doesn't support subscriptions: MetamaskInpageProvider
+
+In order to get updates from the blockchain, this library requires a provider that supports `subscriptions`. MetaMask does not currently inject a provider with this support, this is being tracked via metamask-extension/2350.
+
+Thankfully, we can [create our own provider](https://github.com/INFURA/infura/issues/29#issuecomment-358716498]):
+
+``` js
+var provider = new Web3.providers.WebsocketProvider('wss://ropsten.infura.io/ws')
+```
+
+Until MetaMask's provider supports subscriptions, you can have a `write` web3 instance with MetaMask's provider and a `read` web3 instance which uses the WebsocketProvider. 
+
 ## Contributing
 
 Clone the repo, then:
