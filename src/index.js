@@ -1,4 +1,5 @@
 const Web3 = require('web3')
+const Promise = require('bluebird')
 const _ = require('lodash')
 
 module.exports = (Vue, options) => {
@@ -12,6 +13,8 @@ module.exports = (Vue, options) => {
 
   async function onNewBlockHeaderData(blockHeader) {
     if (! blockHeader.number) return
+
+    await Promise.delay(12000) // allow node to get the txns in the block
 
     let block = await web3.eth.getBlock(blockHeader.number, true)
     
