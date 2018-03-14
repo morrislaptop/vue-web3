@@ -60,6 +60,9 @@ contract('Bind', accounts => {
   })
 
   it('manually binds events', async () => {
+    
+    await setsAndEvents.methods.doSomething(1).send()
+    
     var vm = new Vue({
       data: {
         items: []
@@ -75,9 +78,7 @@ contract('Bind', accounts => {
       template: '<div><div v-for="item in items">{{ item.returnValues._value }}</div></div>'
     })
 
-    let first = new Promise(resolve => vm.$once('EVENT_SYNCED', resolve))
-    await setsAndEvents.methods.doSomething(1).send()
-    await first
+    await new Promise(resolve => vm.$once('EVENTS_SYNCED', resolve))
     expect(vm.items.length).to.equal(1)
 
     let second = new Promise(resolve => vm.$once('EVENT_SYNCED', resolve))
