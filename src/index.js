@@ -1,10 +1,6 @@
-const Web3 = require('web3')
-const Promise = require('bluebird')
-const _ = require('lodash')
-
 module.exports = (Vue, options) => {
 
-  let web3 = options.web3 || new Web3(options.provider)
+  let web3 = options.web3
   let callsToCheck = []
 
   web3.eth
@@ -14,7 +10,8 @@ module.exports = (Vue, options) => {
   async function onNewBlockHeaderData(blockHeader) {
     if (! blockHeader.number) return
 
-    await Promise.delay(12000) // allow node to get the txns in the block
+    // allow node some time to get the txns in the block
+    await new Promise(resolve => setTimeout(resolve, options.delay || 12000))
 
     let block = await web3.eth.getBlock(blockHeader.number, true)
     
@@ -73,12 +70,11 @@ module.exports = (Vue, options) => {
       var bindings = this.$options.web3
       if (typeof bindings === 'function') bindings = bindings.call(this)
       if (! bindings) return
-      
-      let calls = _.pickBy(bindings, value => value.method)
-      Object.keys(calls).forEach(key => this.$bindCall(key, calls[key]))
 
-      let events = _.pickBy(bindings, value => value.event)
-      Object.keys(events).forEach(key => this.$bindEvents(key, events[key]))
+      Object.keys(bindings).forEach(key => {
+        if (bindings[key].method) this.$bindCall(key, bindings[key])
+        if (bindings[key].event) this.$bindEvents(key, bindings[key])
+      })      
     }
   })
 }

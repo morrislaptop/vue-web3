@@ -12,10 +12,11 @@ In module environments, e.g CommonJS:
 
   ``` js
   var Vue = require('vue')
+  var Web3 = require('web3')
   var VueWeb3 = require('vue-web3')
 
   // explicit installation required in module environments
-  Vue.use(VueWeb3, { provider: web3.currentProvider })
+  Vue.use(VueWeb3, { web3: new Web3(web3.currentProvider) })
   ```
 
 ## Usage
