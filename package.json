@@ -18,7 +18,7 @@
     "semantic-release": "^12.4.1",
     "truffle": "^4.1.0",
     "vue": "^2.5.13",
-    "web3": "^1.0.0-beta.31"
+    "web3": "^1.0.0-beta.36"
   },
   "scripts": {
     "dev": "microbundle watch",
