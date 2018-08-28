@@ -1,4 +1,4 @@
-pragma solidity 0.4.19;
+pragma solidity 0.4.24;
 
 contract SetsAndEvents {
 
@@ -16,7 +16,7 @@ contract SetsAndEvents {
   }
 
   function doSomething(uint value) public {
-    SomethingHappened(msg.sender, value);
+    emit SomethingHappened(msg.sender, value);
   }
 
   function noop () public {
